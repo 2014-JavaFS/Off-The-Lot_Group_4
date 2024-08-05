@@ -1,0 +1,19 @@
+{
+  "name": "otl_g4_front",
+  "version": "1.0.0",
+  "description": "This Spring Boot-based RESTful API provides endpoints for managing and retrieving information about used cars available for sale at a  online dealership. It offers functionalities for searching, filtering, and retrieving detailed car information on used cars.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.7.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "pg": "^8.12.0"
+  }
+}
