@@ -7,6 +7,7 @@ import Cart from './Components/Cart';
 import Checkout from './Components/Checkout';
 //import axios from 'axios';
 import "bootstrap/dist/css/bootstrap.min.css";
+import { CartProvider } from './Components/CartContext';
 
 
 
@@ -36,6 +37,7 @@ const App = () => {
             </ul>
           </div>
         </nav>
+        <CartProvider>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/registration" element={<Registration />} />
@@ -43,6 +45,7 @@ const App = () => {
           <Route path="/cart" element={<Cart/>} />
           <Route path="/checkout" element={<Checkout/>} />
         </Routes>
+        </CartProvider>
       </div>
   </Router>
   )
