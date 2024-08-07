@@ -1,6 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import amsServer from '../common/ams-server';
 import { useCart, CartItem} from './CartContext';
+import { Form } from 'react-bootstrap'; 
+
 
 interface Car{
   id: number;
@@ -19,6 +21,8 @@ export default function Home(){
 
   const { addToCart } = useCart();
 
+  const [selectedMake, setSelectedMake] = useState<string>(''); // State for selected make
+
   const handleAddToCart = (car: Car) => {
     const item: CartItem = {
       id: car.id,
@@ -27,6 +31,12 @@ export default function Home(){
       price: car.price,
     };
     addToCart(item);
+  };
+
+  const handleMakeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    if (event.target instanceof HTMLSelectElement) {
+      setSelectedMake(event.target.value as string);
+    }
   };
   
   useEffect(() => {
@@ -42,6 +52,11 @@ export default function Home(){
     };
     fetchCars(); // Calling the function to fetch cars when the component mounts
   }, []); // Empty dependency array ensures this effect runs only once after the initial render
+
+  const filteredCars = selectedMake ? cars.filter(car => car.make === selectedMake) : cars;
+ 
+  // Get unique makes for the dropdown
+  const uniqueMakes = Array.from(new Set(cars.map(car => car.make)));
 
   return (
     <div className="container px-4 px-lg-5">
@@ -65,6 +80,23 @@ export default function Home(){
           <p className="text-white m-0">This call to action card is a great place to showcase some important information or display a clever tagline!</p>
         </div>
       </div>
+
+            {/* Dropdown to filter by make */}
+      <div className="row mb-4">
+        <div className="col-lg-12">
+          <Form>
+            <Form.Group controlId="selectMake">
+              <Form.Label>Filter by Make</Form.Label>
+              <Form.Control  as="select" value={selectedMake} onChange={(e) => handleMakeChange(e as unknown as React.ChangeEvent<HTMLSelectElement>)}>
+            <option value="">All Makes</option>
+                {uniqueMakes.map(make => (
+              <option key={make} value={make}>{make}</option>
+                ))}
+            </Form.Control>
+        </Form.Group>
+          </Form>
+      </div>
+    </div>
 
 
       <div className="row gx-4 gx-lg-5">
