@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
-import amsServer from '../common/ams-server';
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import axios from "axios";
 
 
 export default function Login() {
@@ -23,7 +23,7 @@ export default function Login() {
 
         try {
             // Send POST request with username and password
-            const response = await amsServer.post('/users/login', { username, password });
+            const response = await axios.post('http://localhost:8080/users/login?username=user11&password=pass', { username, password });
 
             // Check response status and headers
             if (response.status >= 200 && response.status < 300) {

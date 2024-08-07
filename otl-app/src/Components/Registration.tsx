@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-//react functional component that handles registration
-const Registration: React.FC = () => {
-    //state management for username, password, and email
+import { Form, Button } from 'react-bootstrap';
+import amsServer from '../common/ams-server';
+
+export default function Registration() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
+    const [status, setStatus] = useState('');
 
-    //event handlers for input fields
     const handleUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setUsername(event.target.value);
     };
@@ -20,41 +21,68 @@ const Registration: React.FC = () => {
         setEmail(event.target.value);
     };
 
-   
-
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         try {
-            const response = await axios.post('/users/register', { username, password, email });
+            const response = await amsServer.post('/users/register', {
+                username,
+                password,
+                email
+            }, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
             console.log(response.data);
-            // Handle successful registration
+            setStatus('Registration successful!');
         } catch (error) {
-            console.error(error);
-            // Handle registration error
+            if (axios.isAxiosError(error)) {
+                console.error("Error message:", error.message);
+                console.error("Error response:", error.response?.data);
+                setStatus('Registration failed: ' + (error.response?.data.message || 'Unknown error'));
+            } else {
+                console.error("Unexpected error:", error);
+                setStatus('Registration failed: Unknown error');
+            }
         }
     };
 
     return (
-        <div className="container">
-            <h1>Registration</h1>
-            <form onSubmit={handleSubmit}>
-                <div className="mb-3">
-                    <label htmlFor="username" className="form-label">Username</label>
-                    <input type="text" className="form-control" id="username" value={username} onChange={handleUsernameChange} />
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="password" className="form-label">Password</label>
-                    <input type="password" className="form-control" id="password" value={password} onChange={handlePasswordChange} />
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="Email" className="form-label">Email</label>
-                    <input type="email" className="form-control" id="email" value={email} onChange={handleEmailChange} />
-                </div>
-                <button type="submit" className="btn btn-primary">Register</button>
-            </form>
-        </div>
+        <React.Fragment>
+            <Form onSubmit={handleSubmit}>
+                <Form.Group controlId="formBasicUsername">
+                    <Form.Label>Username</Form.Label>
+                    <Form.Control
+                        type="text"
+                        placeholder="Enter username"
+                        value={username}
+                        onChange={handleUsernameChange}
+                    />
+                </Form.Group>
+                <Form.Group controlId="formBasicPassword">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control
+                        type="password"
+                        placeholder="Enter password"
+                        value={password}
+                        onChange={handlePasswordChange}
+                    />
+                </Form.Group>
+                <Form.Group controlId="formBasicEmail">
+                    <Form.Label>Email</Form.Label>
+                    <Form.Control
+                        type="email"
+                        placeholder="Enter email"
+                        value={email}
+                        onChange={handleEmailChange}
+                    />
+                </Form.Group>
+                <Button variant="primary" type="submit">
+                    Register
+                </Button>
+            </Form>
+            {status && <p>{status}</p>}
+        </React.Fragment>
     );
-};
-
-export default Registration;
+}
