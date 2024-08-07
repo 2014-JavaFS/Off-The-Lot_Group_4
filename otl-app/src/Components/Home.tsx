@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import amsServer from '../common/ams-server';
+import { useCart, CartItem} from './CartContext';
 
 interface Car{
   id: number;
@@ -15,6 +16,18 @@ interface Car{
 
 export default function Home(){
   const [cars, setCars] = React.useState<Car[]>([]);
+
+  const { addToCart } = useCart();
+
+  const handleAddToCart = (car: Car) => {
+    const item: CartItem = {
+      id: car.id,
+      make: car.make,
+      model: car.model,
+      price: car.price,
+    };
+    addToCart(item);
+  };
   
   useEffect(() => {
     // Function to fetch cars from the backend
@@ -53,6 +66,7 @@ export default function Home(){
         </div>
       </div>
 
+
       <div className="row gx-4 gx-lg-5">
         {cars.map(car => (
           <div className="col-md-4 mb-5" key={car.id}>
@@ -62,7 +76,7 @@ export default function Home(){
                 <p className="card-text">{car.description}{car.condition}</p>
               </div>
               <div className="card-footer">
-                <a className="btn btn-primary btn-sm" href="/Cart">Add to Cart</a>
+              <button className="btn btn-primary btn-sm" onClick={() => handleAddToCart(car)}>Add to Cart</button>
               </div>
             </div>
           </div>

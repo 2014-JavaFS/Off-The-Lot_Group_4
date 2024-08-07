@@ -1,9 +1,9 @@
-import React, {ReactNode, createContext, useContext, useReducer, useState} from 'react';
+import React, {ReactNode, createContext, useContext, useState} from 'react';
 
-interface CartItem {
+export interface CartItem {
     id: number;
     make: string;
-    Model: string;
+    model: string;
     price: number;
 }
 
