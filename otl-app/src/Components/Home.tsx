@@ -21,7 +21,7 @@ export default function Home(){
     const fetchCars = async () => {
       try {
         // Making a GET request to the backend to fetch car data
-        const response = await amsServer.get<Car[]>('/cars'); // Update the URL as needed
+        const response = await amsServer.get<Car[]>('/car'); // Update the URL as needed
         setCars(response.data); // Updating the state with the fetched data
       } catch (error) {
         console.error('Error fetching cars:', error); // Handling any errors that occur during the fetch
@@ -41,8 +41,8 @@ export default function Home(){
           />
         </div>
         <div className="col-lg-5">
-          <h1 className="font-weight-light">OFF The LOT</h1>
-          <p>This is a Online car Lot where you can buy and sell your used cars!!</p>
+          <h1 className="font-weight-light">OFF The Lot</h1>
+          <p>This is a Online car lot where you can buy and sell your used cars!!</p>
           <a className="btn btn-primary" href="/Registration">Register Now!</a>
         </div>
       </div>
