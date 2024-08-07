@@ -29,7 +29,7 @@ export default function Login() {
             if (response.status >= 200 && response.status < 300) {
                 // Handle successful login
                 setStatus("Successfully logged in");
-            } else if (response.status >= 300 && response.status < 400) {
+            } else if (response.status >= 300 && response.status < 401) {
                 // Handle redirection if needed
                 setStatus(12345);
             }
