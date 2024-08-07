@@ -24,16 +24,19 @@ export default function Registration() {
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
+
         try {
-            const response = await amsServer.post('/users/register', {
+            const data = {
                 username,
                 password,
                 email
-            }, {
+              };
+
+              const response = await amsServer.post('/users/register', JSON.stringify(data), {
                 headers: {
-                    'Content-Type': 'application/json'
+                  'Content-Type': 'application/json'
                 }
-            });
+              });
             console.log(response.data);
             setStatus('Registration successful!');
         } catch (error) {
