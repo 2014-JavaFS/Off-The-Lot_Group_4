@@ -13,7 +13,7 @@ const ForgotPassword: React.FC = () => {
 
         try {
             // Send a POST request to the server with the email
-            const response = await axios.post('/api/forgot-password', { email });
+            const response = await axios.post('/Forgot', { email });
             console.log(response.data); // Handle the response as needed
 
             // Display a success message to the user

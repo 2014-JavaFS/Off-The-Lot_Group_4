@@ -23,7 +23,7 @@ export default function Login() {
 
         try {
             // Send POST request with username and password
-            const response = await axios.post('http://localhost:8080/users/login?username=user11&password=pass', { username, password });
+            const response = await axios.post(`http://localhost:8080/users/login?username=${username}&password=${password}`);
 
             // Check response status and headers
             if (response.status >= 200 && response.status < 300) {
@@ -43,17 +43,17 @@ export default function Login() {
     }
 
     return (
-        <div> 
+        <div className="ms-3 me-3"> 
             <form>
                 <div className="form-outline mb-4">
                     <input
-                        type="email"
+                        type="username"
                         id="form2Example1"
                         className="form-control"
-                        placeholder="Please enter email"
+                        placeholder="Please enter username"
                         ref={usernameInput}
                     />
-                    <label className="form-label" htmlFor="form2Example1">Email address</label>
+                    <label className="form-label" htmlFor="form2Example1">Username</label>
                 </div>
                 <div className="form-outline mb-4">
                     <input
@@ -98,7 +98,7 @@ export default function Login() {
 
                 {/* Register buttons */}
                 <div className="text-center">
-                    <p>Not a member? <a href="/Register">Register</a></p>
+                    <p>Not a member? <a href="/registration">Register</a></p>
                     <p>or sign up with:</p>
                 </div>
             </form>
