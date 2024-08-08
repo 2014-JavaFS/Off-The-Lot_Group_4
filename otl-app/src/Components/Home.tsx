@@ -16,6 +16,19 @@ interface Car{
   condition: string;  
 }
 
+const makes = [
+  "Toyota",
+  "Honda",
+  "Ford",
+  "Chevrolet",
+  "BMW",
+  "Mercedes-Benz",
+  "Audi",
+  "Hyundai",
+  "Nissan",
+  "Tesla"
+];
+
 export default function Home(){
   const [cars, setCars] = React.useState<Car[]>([]);
 
@@ -33,10 +46,9 @@ export default function Home(){
     addToCart(item);
   };
 
-  const handleMakeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    if (event.target instanceof HTMLSelectElement) {
-      setSelectedMake(event.target.value as string);
-    }
+  const handleMakeChange = (event: React.ChangeEvent<any>) => {
+    const value = event.target.value as string;
+    setSelectedMake(value);
   };
   
   useEffect(() => {
@@ -55,8 +67,6 @@ export default function Home(){
 
   const filteredCars = selectedMake ? cars.filter(car => car.make === selectedMake) : cars;
  
-  // Get unique makes for the dropdown
-  const uniqueMakes = Array.from(new Set(cars.map(car => car.make)));
 
   return (
     <div className="container px-4 px-lg-5">
@@ -84,23 +94,23 @@ export default function Home(){
             {/* Dropdown to filter by make */}
       <div className="row mb-4">
         <div className="col-lg-12">
-          <Form>
-            <Form.Group controlId="selectMake">
-              <Form.Label>Filter by Make</Form.Label>
-              <Form.Control  as="select" value={selectedMake} onChange={(e) => handleMakeChange(e as unknown as React.ChangeEvent<HTMLSelectElement>)}>
-            <option value="">All Makes</option>
-                {uniqueMakes.map(make => (
-              <option key={make} value={make}>{make}</option>
-                ))}
-            </Form.Control>
-        </Form.Group>
-          </Form>
+        <Form>
+      <Form.Group controlId="selectMake">
+      <Form.Label>Filter by Make</Form.Label>
+      <Form.Control as="select" value={selectedMake} onChange={handleMakeChange}>
+      <option value="">All Makes</option>
+      {makes.map(make => (
+        <option key={make} value={make}>{make}</option>
+      ))}
+      </Form.Control>
+      </Form.Group>
+      </Form>
       </div>
     </div>
 
 
       <div className="row gx-4 gx-lg-5">
-        {cars.map(car => (
+        {filteredCars.map(car => (
           <div className="col-md-4 mb-5" key={car.id}>
             <div className="card h-100">
               <div className="card-body">
