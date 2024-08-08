@@ -5,7 +5,6 @@ import Registration from './Components/Registration';
 import Login from './Components/Login';
 import Cart from './Components/Cart';
 import Checkout from './Components/Checkout';
-//import axios from 'axios';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { CartProvider } from './Components/CartContext';
 
@@ -14,9 +13,9 @@ import { CartProvider } from './Components/CartContext';
 const App = () => {
   return(
     <Router>
-      <div>
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <Link to="/" className="navbar-brand">OTL</Link>
+          <Link to="/" className="navbar-brand ms-5">OTL</Link>
+          <div className='ms-5'>
           <div className="collpase navbar-collapse">
             <ul className="navbar-nav mr-auto">
               <li className="navbar-item">
@@ -36,6 +35,7 @@ const App = () => {
               </li>
             </ul>
           </div>
+          </div>
         </nav>
         <CartProvider>
         <Routes>
@@ -46,7 +46,6 @@ const App = () => {
           <Route path="/checkout" element={<Checkout/>} />
         </Routes>
         </CartProvider>
-      </div>
   </Router>
   )
 }

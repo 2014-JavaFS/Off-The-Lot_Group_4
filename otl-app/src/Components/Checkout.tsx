@@ -59,7 +59,7 @@ export default function Checkout(){
   };
 
   return (
-    <div>
+    <div className='ms-5 mb-3'>
       <h1>Checkout</h1>
       <h2>Order Summary</h2>
       {cartItems.map(item => (
@@ -73,57 +73,59 @@ export default function Checkout(){
 
       <form onSubmit={handleSubmit}>
         <h2>Shipping Information</h2>
-        <div>
+        <div className='ms-5 me-5 mb-4'>
+        <div className='mb-1'>
           <label>
             Name:
             <input type="text" name="name" value={shippingInfo.name} onChange={handleShippingChange} required />
           </label>
         </div>
-        <div>
+        <div className='mb-1'>
           <label>
             Address:
             <input type="text" name="address" value={shippingInfo.address} onChange={handleShippingChange} required />
           </label>
         </div>
-        <div>
+        <div className='mb-1'>
           <label>
             City:
             <input type="text" name="city" value={shippingInfo.city} onChange={handleShippingChange} required />
           </label>
         </div>
-        <div>
+        <div className='mb-1'>
           <label>
             State:
             <input type="text" name="state" value={shippingInfo.state} onChange={handleShippingChange} required />
           </label>
         </div>
-        <div>
+        <div className='mb-1'>
           <label>
             ZIP Code:
             <input type="text" name="zip" value={shippingInfo.zip} onChange={handleShippingChange} required />
           </label>
         </div>
-
+      </div>
         <h2>Payment Information</h2>
-        <div>
+        <div className='ms-5 me-5 mb-3'>
+          <div className='mb-1'>
           <label>
             Card Number:
             <input type="text" name="cardNumber" value={paymentInfo.cardNumber} onChange={handlePaymentChange} required />
           </label>
         </div>
-        <div>
+        <div className='mb-1'>
           <label>
             Expiry Date:
             <input type="text" name="expiryDate" value={paymentInfo.expiryDate} onChange={handlePaymentChange} required />
           </label>
         </div>
-        <div>
+        <div className='mb-1'>
           <label>
             CVV:
             <input type="text" name="cvv" value={paymentInfo.cvv} onChange={handlePaymentChange} required />
           </label>
         </div>
-
+        </div>
         <button type="submit">Place Order</button>
       </form>
     </div>

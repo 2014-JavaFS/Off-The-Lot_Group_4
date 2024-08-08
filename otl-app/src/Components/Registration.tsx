@@ -53,6 +53,7 @@ export default function Registration() {
 
     return (
         <React.Fragment>
+            <div className="ms-5 me-5 mt-5 mb-5">
             <Form onSubmit={handleSubmit}>
                 <Form.Group controlId="formBasicUsername">
                     <Form.Label>Username</Form.Label>
@@ -86,6 +87,7 @@ export default function Registration() {
                 </Button>
             </Form>
             {status && <p>{status}</p>}
+            </div>
         </React.Fragment>
     );
 }

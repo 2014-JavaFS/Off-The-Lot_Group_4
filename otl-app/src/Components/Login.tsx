@@ -43,7 +43,7 @@ export default function Login() {
     }
 
     return (
-        <div className="ms-3 me-3"> 
+        <div className="ms-5 me-5 mt-5 mb-5"> 
             <form>
                 <div className="form-outline mb-4">
                     <input

@@ -35,8 +35,10 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         };
     
         return (
-            <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>
-                {children}
-            </CartContext.Provider>
+            <div className='mt-3 mb-3'>
+                <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>
+                    {children}
+                </CartContext.Provider>
+            </div>
         );
     };
