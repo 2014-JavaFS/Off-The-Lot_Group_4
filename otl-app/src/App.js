@@ -8,6 +8,7 @@ import Checkout from './Components/Checkout';
 //import axios from 'axios';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { CartProvider } from './Components/CartContext';
+import DarkMode from './Components/DarkMode';
 
 
 
@@ -37,6 +38,7 @@ const App = () => {
             </ul>
           </div>
         </nav>
+        <DarkMode />
         <CartProvider>
         <Routes>
           <Route path="/" element={<Home />} />
