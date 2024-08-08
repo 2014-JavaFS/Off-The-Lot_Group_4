@@ -10,7 +10,12 @@
  * Copyright 2011-2022 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
-:root {
+
+
+ :root {
+  --body_background: white; 
+  --body_color: black; 
+  --link_color: navy; 
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
   --bs-purple: #6f42c1;
@@ -79,6 +84,11 @@
   --bs-highlight-bg: #fff3cd;
 }
 
+[data-theme="dark"]{
+  --body_background: #282c34;
+  --body_color: white;
+  --link_color: cyan; 
+}
 *,
 *::before,
 *::after {

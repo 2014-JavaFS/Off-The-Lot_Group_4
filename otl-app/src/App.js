@@ -7,6 +7,7 @@ import Cart from './Components/Cart';
 import Checkout from './Components/Checkout';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { CartProvider } from './Components/CartContext';
+import DarkMode from './Components/DarkMode';
 
 
 
@@ -37,6 +38,7 @@ const App = () => {
           </div>
           </div>
         </nav>
+        <DarkMode />
         <CartProvider>
         <Routes>
           <Route path="/" element={<Home />} />
